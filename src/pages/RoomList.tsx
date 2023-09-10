@@ -3,25 +3,26 @@ import socketIOClient from "socket.io-client";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import { CreateRoom } from "../components";
+import Room from "../components/Room/Room";
 
-function ChatList() {
+function RoomList() {
   const [text, setText] = useState("");
   const [room, setRoom] = useState("");
   const [rooms, setRooms] = useState([]);
   // const [socket, setSocket] = useState(null);
   const navigate = useNavigate();
 
-  const auth = useAppSelector((state) => state.auth.isAuth);
-  const user = useAppSelector((state) => state.auth.user);
+  // const auth = useAppSelector((state) => state.auth.isAuth);
+  const { isAuth, user } = useAppSelector((state) => state.auth);
   console.log("user", user);
-  console.log(auth);
+  console.log(isAuth);
 
   const client = useMemo(() => {
     return socketIOClient("http://localhost:5000");
   }, []);
 
   useEffect(() => {
-    if (auth) {
+    if (isAuth) {
       client.on("connect", () => {
         console.log("WebSocket подключение открыто");
         // client.emit("createRoom", "room1");
@@ -43,11 +44,11 @@ function ChatList() {
     return () => {
       client.disconnect();
     };
-  }, [auth, navigate, client]);
+  }, [isAuth, navigate, client]);
 
-  // useEffect(() => {
-  //   axios.get("api/getUser");
-  // }, []);
+  useEffect(() => {
+    setRooms(user.rooms);
+  }, [user]);
 
   const sendMessage = () => {
     const message = text;
@@ -64,7 +65,7 @@ function ChatList() {
     // client.emit("createRoom", room);
     client.emit("join", room);
   };
-
+  console.log("rooms", user.rooms);
   return (
     <>
       <input
@@ -83,8 +84,13 @@ function ChatList() {
       <button onClick={enter}>Войти</button>
       <hr />
       <CreateRoom />
+      <div>
+        {user.rooms.map((room, index) => (
+          <Room key={index} room={room}></Room>
+        ))}
+      </div>
     </>
   );
 }
 
-export default ChatList;
+export default RoomList;
