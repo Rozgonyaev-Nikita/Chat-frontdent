@@ -1,6 +1,7 @@
 import { DetailedHTMLProps, FC, ReactNode } from "react";
 import classes from "./PTag.module.css";
 import { HtmlHTMLAttributes } from "react";
+import { useNavigate } from "react-router-dom";
 
 // interface IButtonBack
 //   extends DetailedHTMLProps<
@@ -12,8 +13,18 @@ import { HtmlHTMLAttributes } from "react";
 
 const ButtonBack: FC<
   DetailedHTMLProps<HtmlHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-> = ({ children, ...props }) => {
-  return <button {...props}>{children}</button>;
+> = ({ ...props }) => {
+  const navigate = useNavigate();
+
+  const back = () => {
+    navigate(-1);
+  };
+
+  return (
+    <button {...props} onClick={back}>
+      Назад
+    </button>
+  );
 };
 
 export default ButtonBack;

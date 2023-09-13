@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useAppSelector } from "../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { addRoom } from "../store/authSlice";
 
 const CreateRoom = () => {
   const [hisLogin, setHisLogin] = useState("");
 
   const myLogin = useAppSelector((state) => state.auth.user.login);
+
+  const dispatch = useAppDispatch();
 
   const createRoom = () => {
     const room = `${myLogin} + ${hisLogin}`;
@@ -14,6 +17,16 @@ const CreateRoom = () => {
         myLogin,
         hisLogin,
         room,
+      });
+      dispatch(addRoom(room));
+    } catch (e: unknown) {
+      console.log(e.message);
+    }
+
+    try {
+      axios.post("http://localhost:5000/api/createChat", {
+        room,
+        messages: [],
       });
     } catch (e: unknown) {
       console.log(e.message);

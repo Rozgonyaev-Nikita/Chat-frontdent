@@ -24,11 +24,13 @@ const authSlice = createSlice({
     authAction(state, action) {
       // state.isAuth = action.payload;
       state.user = action.payload;
-      console.log(action.payload);
       state.isAuth = true;
+    },
+    addRoom(state, action) {
+      state.user.rooms.push(action.payload);
     },
   },
 });
 
-export const { authAction } = authSlice.actions;
+export const { authAction, addRoom } = authSlice.actions;
 export default authSlice.reducer;
