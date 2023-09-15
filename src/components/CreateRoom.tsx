@@ -10,26 +10,34 @@ const CreateRoom = () => {
 
   const dispatch = useAppDispatch();
 
-  const createRoom = () => {
+  const createRoom = async () => {
     const room = `${myLogin} + ${hisLogin}`;
+    let success;
     try {
-      axios.post("http://localhost:5000/api/users/rooms", {
+      const res = await axios.post("http://localhost:5000/api/users/rooms", {
         myLogin,
         hisLogin,
         room,
       });
+      success = res;
       dispatch(addRoom(room));
     } catch (e: unknown) {
-      console.log(e.message);
+      // console.log(e.message);
+      console.log("Ошибка!");
     }
 
-    try {
-      axios.post("http://localhost:5000/api/createChat", {
-        room,
-        messages: [],
-      });
-    } catch (e: unknown) {
-      console.log(e.message);
+    if (success?.status !== 200) {
+      console.log("Новый чат не создан!");
+    } else {
+      try {
+        axios.post("http://localhost:5000/api/createChat", {
+          room,
+          messages: [],
+        });
+      } catch (e: unknown) {
+        // console.log(e.message);
+        console.log("Ошибка при создании чата!");
+      }
     }
   };
 

@@ -2,11 +2,21 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import { useAppSelector } from "../../hooks/reduxHooks";
+import axios from "axios";
+
+interface IMessages {
+  _id: string;
+  name: string;
+  text: string;
+  date: Date;
+}
 
 const Chat = () => {
   const [text, setText] = useState("");
+  const [messages, setMessages] = useState<IMessages[]>([]);
 
   const name = useAppSelector((state) => state.auth.user.login);
+  console.log("messages", messages);
 
   const { room } = useParams();
 
@@ -28,6 +38,7 @@ const Chat = () => {
 
     client.on("message", (data) => {
       console.log(`Получено сообщение: ${data.text}`);
+      setMessages((prevMessages) => [...prevMessages, data]);
     });
 
     // setSocket(client);
@@ -36,6 +47,17 @@ const Chat = () => {
       client.disconnect();
     };
   }, [client]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/getMessages", {
+        params: { room },
+      })
+      .then((res) => {
+        setMessages(res.data.messages);
+        console.log("об", res.data.messages);
+      });
+  }, [room]);
 
   const sendMessage = () => {
     // const message = text;
@@ -52,6 +74,14 @@ const Chat = () => {
         type="text"
       />
       <button onClick={sendMessage}>Отправить</button>
+      {messages &&
+        messages.map((message, index) =>
+          message.name === name ? (
+            <div key={index}>{message.text}</div>
+          ) : (
+            <div key={index}>{message.text}</div>
+          )
+        )}
     </div>
   );
 };
