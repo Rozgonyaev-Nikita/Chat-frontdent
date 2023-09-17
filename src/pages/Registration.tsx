@@ -20,7 +20,7 @@ const Registration = () => {
     if (password === password2) {
       console.log("Ok");
       console.log(login, password);
-      axios.post("http://localhost:5000/api/registration", {
+      axios.post("https://chat-backend-a7g9.onrender.com/api/registration", {
         login,
         password,
         rooms: [],

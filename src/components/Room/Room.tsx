@@ -26,7 +26,7 @@ const Room: FC<IRoom> = ({ room }) => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/lastMessage", {
+      .get("https://chat-backend-a7g9.onrender.com/api/lastMessage", {
         params: {
           room,
         },

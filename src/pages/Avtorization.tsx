@@ -16,7 +16,7 @@ const Avtorization = () => {
 
   const avtorization = () => {
     axios
-      .get("http://localhost:5000/api/getUser", {
+      .get("https://chat-backend-a7g9.onrender.com/api/getUser", {
         params: {
           login,
           password,

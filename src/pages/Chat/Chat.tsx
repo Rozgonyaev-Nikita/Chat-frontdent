@@ -24,7 +24,7 @@ const Chat = () => {
   const { room } = useParams();
 
   const client = useMemo(() => {
-    return socketIOClient("http://localhost:5000");
+    return socketIOClient("https://chat-backend-a7g9.onrender.com");
   }, []);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Chat = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/getMessages", {
+      .get("https://chat-backend-a7g9.onrender.com/api/getMessages", {
         params: { room },
       })
       .then((res) => {

@@ -14,11 +14,14 @@ const CreateRoom = () => {
     const room = `${myLogin} + ${hisLogin}`;
     let success;
     try {
-      const res = await axios.post("http://localhost:5000/api/users/rooms", {
-        myLogin,
-        hisLogin,
-        room,
-      });
+      const res = await axios.post(
+        "https://chat-backend-a7g9.onrender.com/api/users/rooms",
+        {
+          myLogin,
+          hisLogin,
+          room,
+        }
+      );
       success = res;
       dispatch(addRoom(room));
     } catch (e: unknown) {
@@ -30,7 +33,7 @@ const CreateRoom = () => {
       console.log("Новый чат не создан!");
     } else {
       try {
-        axios.post("http://localhost:5000/api/createChat", {
+        axios.post("https://chat-backend-a7g9.onrender.com/api/createChat", {
           room,
           messages: [],
         });
