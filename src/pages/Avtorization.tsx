@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { authAction } from "../store/authSlice";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 const Avtorization = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [avtoriz, setAvtoriz] = useState(false);
+  // const [avtoriz, setAvtoriz] = useState(false);
 
   const navigate = useNavigate();
 
-  const auth = useAppSelector((state) => state.auth.isAuth);
+  // const auth = useAppSelector((state) => state.auth.isAuth);
   const dispatch = useAppDispatch();
 
   const avtorization = () => {
@@ -26,7 +26,7 @@ const Avtorization = () => {
         // if (response.data === true) {
         if (response.data) {
           console.log(response.data);
-          setAvtoriz(response.data);
+          // setAvtoriz(response.data);
           dispatch(authAction(response.data));
           navigate("/");
         } else {

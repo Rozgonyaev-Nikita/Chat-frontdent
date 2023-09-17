@@ -34,7 +34,7 @@ const Room: FC<IRoom> = ({ room }) => {
       .then((res) => {
         setRoomInfo(res.data);
       });
-  }, []);
+  }, [room]);
 
   return (
     <div onClick={goToThePage} className={classes.room}>

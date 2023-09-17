@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./RoomMenu.module.css";
 import { useLocation } from "react-router-dom";
 import { ButtonBack } from "../../UI";

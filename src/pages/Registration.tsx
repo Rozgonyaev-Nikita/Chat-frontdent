@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 // import { Link, useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ const Registration = () => {
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
   } = useForm({ mode: "onBlur" });
 
@@ -30,7 +30,7 @@ const Registration = () => {
       console.log("Ты что дебил?");
     }
   };
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     console.log(JSON.stringify(onSubmit));
   };
 
@@ -53,7 +53,7 @@ const Registration = () => {
         </label>
         {errors?.name ? (
           <div style={{ margin: "0 0", padding: "0 0", color: "red" }}>
-            {errors?.name?.message || "karp"}
+            {errors?.name?.message?.toString() || "karp"}
           </div>
         ) : (
           <div style={{ padding: "0 0 20px 0px", margin: "0 0" }}></div>
@@ -74,7 +74,7 @@ const Registration = () => {
         </label>
         {errors?.password ? (
           <div style={{ margin: "0 0", padding: "0 0", color: "red" }}>
-            {errors?.password?.message || "karp"}
+            {errors?.password?.message?.toString() || "karp"}
           </div>
         ) : (
           <div style={{ padding: "0 0 20px 0px", margin: "0 0" }}></div>
@@ -95,7 +95,7 @@ const Registration = () => {
         </label>
         {errors?.password2 ? (
           <div style={{ margin: "0 0", padding: "0 0", color: "red" }}>
-            {errors?.password2?.message || "hg"}
+            {errors?.password2?.message?.toString() || "hg"}
           </div>
         ) : (
           <div style={{ padding: "0 0 20px 0px", margin: "0 0" }}></div>
