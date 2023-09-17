@@ -4,9 +4,10 @@ import { ButtonBack } from "../UI";
 
 const Layout = () => {
   return (
-    <div>
-      <ButtonBack />
+    <div className="gridSeparator">
+      <div className="asidePanel"></div>
       <Outlet />
+      <div className="asidePanel"></div>
     </div>
   );
 };

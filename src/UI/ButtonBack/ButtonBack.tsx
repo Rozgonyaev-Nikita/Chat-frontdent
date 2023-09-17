@@ -1,7 +1,8 @@
-import { DetailedHTMLProps, FC, ReactNode } from "react";
-import classes from "./PTag.module.css";
+import { DetailedHTMLProps, FC } from "react";
+import classes from "./ButtonBack.module.css";
 import { HtmlHTMLAttributes } from "react";
 import { useNavigate } from "react-router-dom";
+import { IoCaretBackSharp } from "react-icons/io5";
 
 // interface IButtonBack
 //   extends DetailedHTMLProps<
@@ -21,8 +22,8 @@ const ButtonBack: FC<
   };
 
   return (
-    <button {...props} onClick={back}>
-      Назад
+    <button {...props} className={classes.buttonActive} onClick={back}>
+      <IoCaretBackSharp />
     </button>
   );
 };

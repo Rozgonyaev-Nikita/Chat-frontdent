@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import { CreateRoom } from "../components";
-import Room from "../components/Room/Room";
+import { Room } from "../components";
 
 function RoomList() {
   const navigate = useNavigate();
@@ -18,14 +18,14 @@ function RoomList() {
   }, [isAuth, navigate]);
 
   return (
-    <>
+    <div>
       <CreateRoom />
       <div>
         {user.rooms.map((room, index) => (
           <Room key={index} room={room}></Room>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import axios from "axios";
+import classes from "./Chat.module.css";
+import { SendPanel } from "../../UI";
+import { RoomMenu } from "../../components";
 
 interface IMessages {
   _id: string;
@@ -60,28 +63,36 @@ const Chat = () => {
   }, [room]);
 
   const sendMessage = () => {
-    // const message = text;
-    // // client.emit("chat message", { roomId: room, message });
-    // client.emit("chat message", message);
-    client.emit("chat message", { room, text, name });
+    if (text) client.emit("chat message", { room, text, name });
   };
 
   return (
-    <div>
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        type="text"
-      />
-      <button onClick={sendMessage}>Отправить</button>
-      {messages &&
-        messages.map((message, index) =>
-          message.name === name ? (
-            <div key={index}>{message.text}</div>
-          ) : (
-            <div key={index}>{message.text}</div>
-          )
-        )}
+    <div className={classes.wrapper}>
+      <RoomMenu />
+      <div>
+        <div className={classes.chat}>
+          {messages &&
+            messages.map((message, index) =>
+              message.name !== name ? (
+                <div key={index}>
+                  <div className={classes.alienMessage}>
+                    <h6 className={[classes.noneMar, classes.h6].join(" ")}>
+                      {message.name}
+                    </h6>
+                    <p className={classes.noneMar}>{message.text}</p>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ textAlign: "right" }} key={index}>
+                  <div className={classes.myMessage} key={index}>
+                    <p className={classes.noneMar}>{message.text}</p>
+                  </div>
+                </div>
+              )
+            )}
+        </div>
+        <SendPanel text={text} setText={setText} sendMessage={sendMessage} />
+      </div>
     </div>
   );
 };

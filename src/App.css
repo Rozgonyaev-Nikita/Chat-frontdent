@@ -1,0 +1,12 @@
+#root {
+  width: 100%;
+}
+
+.gridSeparator {
+  display: grid;
+  grid-template-columns: 400px minmax(300px, 1fr) 400px;
+  min-height: 100vh;
+}
+.asidePanel {
+  background-color: #666;
+}

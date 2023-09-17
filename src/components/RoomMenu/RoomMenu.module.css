@@ -1,0 +1,8 @@
+.room {
+  background-color: #222;
+  text-align: center;
+  color: #999;
+  margin: -5px;
+  padding: 5px;
+  position: relative;
+}
