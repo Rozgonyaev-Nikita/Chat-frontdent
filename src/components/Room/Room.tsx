@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./Room.module.css";
 import axios from "axios";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 interface IRoom {
   room: string;
@@ -20,6 +21,9 @@ const Room: FC<IRoom> = ({ room }) => {
     _id: {},
     date: new Date(),
   });
+
+  const name = useAppSelector((state) => state.auth.user.login);
+
   const navigate = useNavigate();
   const goToThePage = () => {
     navigate(`/${room}`);
@@ -39,7 +43,12 @@ const Room: FC<IRoom> = ({ room }) => {
   return (
     <div onClick={goToThePage} className={classes.room}>
       <h5 className={classes.h5}>{room}</h5>
-      <p>{roomInfo.text}</p>
+      <p className={classes.lastMessage}>
+        <span className={classes.user}>
+          {name === roomInfo.name ? "Вы: " : `${roomInfo.name}: `}
+        </span>{" "}
+        {roomInfo.text}
+      </p>
     </div>
   );
 };

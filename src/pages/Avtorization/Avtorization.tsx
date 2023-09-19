@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { authAction } from "../store/authSlice";
-import { useAppDispatch } from "../hooks/reduxHooks";
+import { authAction } from "../../store/authSlice";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import classes from "./Avtorization.module.css";
 
 const Avtorization = () => {
   const [login, setLogin] = useState("");
@@ -15,6 +16,7 @@ const Avtorization = () => {
   const dispatch = useAppDispatch();
 
   const avtorization = () => {
+    console.log("начало входа");
     axios
       .get("https://chat-backend-a7g9.onrender.com/api/getUser", {
         params: {
@@ -46,22 +48,28 @@ const Avtorization = () => {
   // }, []);
 
   return (
-    <div className="registration">
-      <input
-        type="text"
-        value={login}
-        onChange={(e) => setLogin(e.target.value)}
-        placeholder="Введите логин"
-      />
-      <input
-        type="text"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Введите пароль"
-      />
-      <button onClick={avtorization}>Войти</button>
-      <Link to="/registration">Зарегистрироваться</Link>
-      <Link to="/">Назад</Link>
+    <div className={classes.avtorization}>
+      <div className={classes.form}>
+        <input
+          type="text"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+          placeholder="Введите логин"
+        />
+        <input
+          type="text"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Введите пароль"
+        />
+        <button onClick={avtorization}>Войти</button>
+        <Link to="/registration" className={classes.back}>
+          Зарегистрироваться
+        </Link>
+        <Link to="/" className={classes.back}>
+          Назад
+        </Link>
+      </div>
     </div>
   );
 };

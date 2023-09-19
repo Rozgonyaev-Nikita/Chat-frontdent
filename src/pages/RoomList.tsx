@@ -18,7 +18,7 @@ function RoomList() {
   }, [isAuth, navigate]);
 
   return (
-    <div>
+    <div className="roomList">
       <CreateRoom />
       <div>
         {user.rooms.map((room, index) => (

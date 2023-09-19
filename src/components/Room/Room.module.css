@@ -1,8 +1,18 @@
 .room {
-  background-color: aqua;
-  border-radius: 40px;
+  background-color: lavender;
+  /* border-radius: 40px; */
   padding: 5px;
+  margin-top: 5px;
 }
 .h5 {
-  margin: 5px;
+  margin: 5px 0px;
+}
+.lastMessage {
+  margin: 0;
+  white-space: nowrap; /* Запрещаем перенос текста на новую строку */
+  overflow: hidden; /* Скрываем текст, выходящий за пределы контейнера */
+  text-overflow: ellipsis;
+}
+.user {
+  color: red;
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import classes from "./Registration.module.css";
 // import { Link, useNavigate } from 'react-router-dom';
 
 const Registration = () => {
@@ -8,10 +10,11 @@ const Registration = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
+  const navigate = useNavigate();
+
   const {
     register,
     formState: { errors },
-    handleSubmit,
   } = useForm({ mode: "onBlur" });
 
   // const navigate = useNavigate();
@@ -25,18 +28,15 @@ const Registration = () => {
         password,
         rooms: [],
       });
-      // navigate('/avtorization');
+      navigate("/avtorization");
     } else {
       console.log("Ты что дебил?");
     }
   };
-  const onSubmit = () => {
-    console.log(JSON.stringify(onSubmit));
-  };
 
   return (
-    <div className="registration">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className={classes.registration}>
+      <div className={classes.form}>
         <label>
           Ввдедите имя:
           <input
@@ -102,7 +102,7 @@ const Registration = () => {
         )}
         {/* <input type="submit" value="Зарегистрироватья" disabled={!isValid} /> */}
         <button onClick={registration}>Зарегистрироватья</button>
-      </form>
+      </div>
       {/* <Link to={'/avtorization'}>Назад</Link> */}
     </div>
   );

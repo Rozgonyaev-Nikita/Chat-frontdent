@@ -4,9 +4,29 @@
 
 .gridSeparator {
   display: grid;
-  grid-template-columns: 400px minmax(300px, 1fr) 400px;
+  grid-template-columns: 1fr minmax(400px, 1fr) 1fr;
   min-height: 100vh;
 }
 .asidePanel {
   background-color: #666;
+}
+@media (max-width: 500px) {
+  .gridSeparator {
+    grid-template-columns: minmax(300px, 1fr);
+  }
+  .asidePanel {
+    display: none;
+  }
+}
+@media (max-width: 330px) {
+  .gridSeparator {
+    grid-template-columns: minmax(200px, 1fr);
+  }
+  .asidePanel {
+    display: none;
+  }
+}
+
+.roomList {
+  background-color: #708090;
 }
