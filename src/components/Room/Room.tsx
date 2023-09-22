@@ -45,7 +45,11 @@ const Room: FC<IRoom> = ({ room }) => {
       <h5 className={classes.h5}>{room}</h5>
       <p className={classes.lastMessage}>
         <span className={classes.user}>
-          {name === roomInfo.name ? "Вы: " : `${roomInfo.name}: `}
+          {name === roomInfo.name
+            ? "Вы: "
+            : roomInfo.name !== undefined
+            ? `${roomInfo.name}: `
+            : "Сообщений нет!"}
         </span>{" "}
         {roomInfo.text}
       </p>

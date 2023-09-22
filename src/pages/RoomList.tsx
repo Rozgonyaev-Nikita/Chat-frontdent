@@ -20,10 +20,13 @@ function RoomList() {
   return (
     <div className="roomList">
       <CreateRoom />
+      <hr className="hr" />
       <div>
-        {user.rooms.map((room, index) => (
-          <Room key={index} room={room}></Room>
-        ))}
+        {user.rooms.length ? (
+          user.rooms.map((room, index) => <Room key={index} room={room}></Room>)
+        ) : (
+          <h2>Вы не состоите не в одной чате</h2>
+        )}
       </div>
     </div>
   );

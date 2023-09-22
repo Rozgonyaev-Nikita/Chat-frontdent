@@ -3,6 +3,21 @@
   text-align: center;
   color: #999;
   margin: -5px;
+  padding: 9px;
+  position: relative;
+}
+/* .room {
+  background-color: #222;
+  display: flex;
+
+  justify-content: space-around;
+  color: #999;
+  margin: -5px;
   padding: 5px;
   position: relative;
+} */
+.createRoomWrapper {
+  position: absolute;
+  right: 0px;
+  top: -3px;
 }

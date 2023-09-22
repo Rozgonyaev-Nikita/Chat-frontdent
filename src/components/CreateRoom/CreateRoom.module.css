@@ -1,0 +1,44 @@
+.createRoomBlock {
+  height: 42px;
+  box-sizing: border-box;
+  margin-top: 3px;
+}
+.createRoomInline {
+  display: inline-block;
+  height: 42px;
+  box-sizing: border-box;
+}
+.closeDiv {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 5px;
+  margin-top: 1px;
+}
+.hr {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.form {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 100%;
+  padding-inline: 10px;
+}
+.input {
+  /* height: 22px; */
+  align-self: center;
+  border-radius: 15px;
+  border: none;
+  width: 200px;
+  margin: 5px;
+  background-color: #eee;
+  padding: 5px 10px;
+  outline: none !important;
+}
+.button {
+  padding: 5px 10px;
+  background-color: #ccc;
+}

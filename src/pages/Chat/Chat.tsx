@@ -69,6 +69,7 @@ const Chat = () => {
   return (
     <div className={classes.wrapper}>
       <RoomMenu />
+      <hr className={classes.hr} />
       <div>
         <div className={classes.chat}>
           {messages &&
