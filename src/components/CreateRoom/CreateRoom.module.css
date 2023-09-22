@@ -26,6 +26,7 @@
   align-items: center;
   height: 100%;
   padding-inline: 10px;
+  background-color: #222;
 }
 .input {
   /* height: 22px; */
@@ -41,4 +42,23 @@
 .button {
   padding: 5px 10px;
   background-color: #ccc;
+}
+
+@media (max-width: 400px) {
+  .input {
+    width: 150px;
+  }
+  .button {
+    font-size: 14px;
+    padding: 3px 8px;
+  }
+}
+@media (max-width: 330px) {
+  .input {
+    width: 120px;
+  }
+  .button {
+    font-size: 14px;
+    padding: 3px 8px;
+  }
 }

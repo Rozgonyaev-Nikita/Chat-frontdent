@@ -13,7 +13,7 @@ const RoomMenu = () => {
       <ButtonBack />
       <span>{room}</span>
       <div className={classes.createRoomWrapper}>
-        <CreateRoom isInline={true} />
+        <CreateRoom isNewUser={true} />
       </div>
     </div>
   );

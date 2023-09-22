@@ -5,10 +5,10 @@ import AddNewRoom from "./AddNewRoom";
 import cn from "classnames";
 
 interface ICreateRoom {
-  isInline?: boolean;
+  isNewUser?: boolean;
 }
 
-const CreateRoom: FC<ICreateRoom> = ({ isInline = false }) => {
+const CreateRoom: FC<ICreateRoom> = ({ isNewUser = false }) => {
   const [hisLogin, setHisLogin] = useState("");
   const [isOpen, setOpen] = useState(false);
 
@@ -16,7 +16,7 @@ const CreateRoom: FC<ICreateRoom> = ({ isInline = false }) => {
     return (
       <div
         className={cn(classes.createRoomBlock, {
-          [classes.createRoomInline]: isInline,
+          [classes.createRoomInline]: isNewUser,
         })}
       >
         <div className={classes.closeDiv}>
@@ -28,7 +28,7 @@ const CreateRoom: FC<ICreateRoom> = ({ isInline = false }) => {
 
   return (
     <AddNewRoom
-      isInline={isInline}
+      isNewUser={isNewUser}
       hisLogin={hisLogin}
       setHisLogin={setHisLogin}
       setOpen={setOpen}

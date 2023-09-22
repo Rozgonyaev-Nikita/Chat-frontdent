@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import classes from "./CreateRoom.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import axios from "axios";
@@ -10,14 +10,14 @@ interface IAddNewRoom {
   hisLogin: string;
   setHisLogin: (hisLogin: string) => void;
   setOpen: (isOpen: boolean) => void;
-  isInline: boolean;
+  isNewUser: boolean;
 }
 
 const AddNewRoom: FC<IAddNewRoom> = ({
   hisLogin,
   setHisLogin,
   setOpen,
-  isInline,
+  isNewUser,
 }) => {
   const myLogin = useAppSelector((state) => state.auth.user.login);
 
@@ -28,7 +28,7 @@ const AddNewRoom: FC<IAddNewRoom> = ({
   const createRoom = async () => {
     const room = `${myLogin} + ${hisLogin}`;
     let success;
-    if (!isInline) {
+    if (!isNewUser) {
       try {
         const res = await axios.post(
           "https://chat-backend-a7g9.onrender.com/api/users/rooms",
