@@ -18,6 +18,13 @@
 } */
 .createRoomWrapper {
   position: absolute;
-  right: 0px;
+  right: 30px;
   top: -3px;
+}
+.menuWrapper {
+  background-color: inherit;
+  position: absolute;
+  right: 2px;
+  top: 8px;
+  padding: 0;
 }

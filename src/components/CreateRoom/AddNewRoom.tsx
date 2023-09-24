@@ -5,6 +5,7 @@ import axios from "axios";
 import { addRoom } from "../../store/authSlice";
 import { useLocation } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
+import { BsSendPlusFill } from "react-icons/bs";
 
 interface IAddNewRoom {
   hisLogin: string;
@@ -50,6 +51,8 @@ const AddNewRoom: FC<IAddNewRoom> = ({
       } else {
         try {
           axios.post("https://chat-backend-a7g9.onrender.com/api/createChat", {
+            myLogin,
+            hisLogin,
             room,
             messages: [],
           });
@@ -67,7 +70,7 @@ const AddNewRoom: FC<IAddNewRoom> = ({
         );
         console.log(room);
         const res = await axios.post(
-          "https://chat-backend-a7g9.onrender.com/api/users/roomsAdd",
+          "https://chat-backend-a7g9.onrender.com/api/usersInRoomsAdd",
           {
             hisLogin,
             room,
@@ -99,6 +102,13 @@ const AddNewRoom: FC<IAddNewRoom> = ({
         />
         <button onClick={createRoom} className={classes.button}>
           Отправить
+        </button>
+        <button onClick={createRoom} className={classes.sendButton}>
+          <BsSendPlusFill
+            className={classes.sendIcon}
+            size="20px"
+            color="grey"
+          />
         </button>
       </div>
     </div>

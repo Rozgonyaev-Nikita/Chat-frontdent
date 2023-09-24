@@ -5,7 +5,7 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 import axios from "axios";
 import classes from "./Chat.module.css";
 import { SendPanel } from "../../UI";
-import { RoomMenu } from "../../components";
+import { RoomMenu, UserList } from "../../components";
 
 interface IMessages {
   _id: string;
@@ -67,32 +67,35 @@ const Chat = () => {
   };
 
   return (
-    <div className={classes.wrapper}>
-      <RoomMenu />
-      <hr className={classes.hr} />
-      <div>
-        <div className={classes.chat}>
-          {messages &&
-            messages.map((message, index) =>
-              message.name !== name ? (
-                <div key={index}>
-                  <div className={classes.alienMessage}>
-                    <h6 className={[classes.noneMar, classes.h6].join(" ")}>
-                      {message.name}
-                    </h6>
-                    <p className={classes.noneMar}>{message.text}</p>
+    <div>
+      <div className={classes.wrapperChat}>
+        <RoomMenu />
+        <UserList room={room || "room"} />
+        {/* <hr className={classes.hr} /> */}
+        <div>
+          <div className={classes.chat}>
+            {messages &&
+              messages.map((message, index) =>
+                message.name !== name ? (
+                  <div key={index}>
+                    <div className={classes.alienMessage}>
+                      <h6 className={[classes.noneMar, classes.h6].join(" ")}>
+                        {message.name}
+                      </h6>
+                      <p className={classes.noneMar}>{message.text}</p>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div style={{ textAlign: "right" }} key={index}>
-                  <div className={classes.myMessage} key={index}>
-                    <p className={classes.noneMar}>{message.text}</p>
+                ) : (
+                  <div style={{ textAlign: "right" }} key={index}>
+                    <div className={classes.myMessage} key={index}>
+                      <p className={classes.noneMar}>{message.text}</p>
+                    </div>
                   </div>
-                </div>
-              )
-            )}
+                )
+              )}
+          </div>
+          <SendPanel text={text} setText={setText} sendMessage={sendMessage} />
         </div>
-        <SendPanel text={text} setText={setText} sendMessage={sendMessage} />
       </div>
     </div>
   );

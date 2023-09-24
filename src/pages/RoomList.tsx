@@ -3,6 +3,7 @@ import { useAppSelector } from "../hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import { CreateRoom } from "../components";
 import { Room } from "../components";
+import "../App.css";
 
 function RoomList() {
   const navigate = useNavigate();

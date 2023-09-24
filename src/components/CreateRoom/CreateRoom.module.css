@@ -43,22 +43,54 @@
   padding: 5px 10px;
   background-color: #ccc;
 }
-
-@media (max-width: 400px) {
+.sendButton {
+  display: none;
+  padding: 0px;
+  padding-top: 4px;
+  background-color: initial;
+}
+@media (max-width: 430px) {
   .input {
-    width: 150px;
+    width: 200px;
   }
   .button {
     font-size: 14px;
     padding: 3px 8px;
   }
 }
-@media (max-width: 330px) {
+
+@media (max-width: 370px) {
   .input {
-    width: 120px;
+    width: 130px;
   }
   .button {
-    font-size: 14px;
+    font-size: 12px;
     padding: 3px 8px;
+  }
+}
+@media (max-width: 335px) {
+  .input {
+    width: 150px;
+  }
+  .button {
+    /* font-size: 14px;
+    padding: 3px 8px; */
+    display: none;
+  }
+  .sendButton {
+    display: inline-block;
+  }
+}
+@media (max-width: 305px) {
+  .input {
+    width: 135px;
+  }
+  .button {
+    /* font-size: 14px;
+    padding: 3px 8px; */
+    display: none;
+  }
+  .sendButton {
+    display: inline-block;
   }
 }

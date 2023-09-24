@@ -1,0 +1,27 @@
+.userList {
+  width: 100%;
+  height: calc(100% - 42px);
+  margin-left: -5px;
+
+  position: absolute;
+  top: -100%;
+}
+.userListw {
+  background-color: #555;
+
+  width: 100%;
+  height: calc(100% - 42px);
+  margin-left: -5px;
+
+  position: absolute;
+  top: 42px;
+
+  transition: 0.2s;
+}
+.userItem {
+  color: white;
+  border-bottom: 1px solid #ddd;
+
+  margin-top: 10px;
+  padding-left: 10px;
+}

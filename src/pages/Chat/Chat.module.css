@@ -1,4 +1,7 @@
 .wrapper {
+  position: relative;
+}
+.wrapperChat {
   background-color: #708090;
   min-height: 100vh;
   /* min-height: 100%; */
@@ -38,6 +41,10 @@
   padding: 5px;
   padding-left: 10px;
 }
+/* .chat {
+  overflow-: hidden;
+  height: 600px;
+} */
 
 .noneMar {
   margin: 0 0 0 0;
