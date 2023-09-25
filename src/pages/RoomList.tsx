@@ -17,6 +17,7 @@ function RoomList() {
       navigate("/avtorization");
     }
   }, [isAuth, navigate]);
+  console.log(user);
 
   return (
     <div className="roomList">

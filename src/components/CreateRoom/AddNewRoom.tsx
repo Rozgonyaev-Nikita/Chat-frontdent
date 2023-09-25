@@ -69,15 +69,15 @@ const AddNewRoom: FC<IAddNewRoom> = ({
           pt.pathname.replace(/%20/g, " ").slice(1)
         );
         console.log(room);
-        const res = await axios.post(
+        await axios.post(
           "https://chat-backend-a7g9.onrender.com/api/usersInRoomsAdd",
           {
             hisLogin,
             room,
           }
         );
-        success = res;
-        dispatch(addRoom(room));
+        // success = res;
+        // dispatch(addRoom(room));
         setOpen(false);
       } catch (e: unknown) {
         console.log("Ошибка!");

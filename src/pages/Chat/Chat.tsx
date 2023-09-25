@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import { useAppSelector } from "../../hooks/reduxHooks";
@@ -17,6 +17,8 @@ interface IMessages {
 const Chat = () => {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState<IMessages[]>([]);
+
+  const chatElement = useRef<HTMLDivElement>(null);
 
   const name = useAppSelector((state) => state.auth.user.login);
   console.log("messages", messages);
@@ -61,9 +63,17 @@ const Chat = () => {
         console.log("об", res.data.messages);
       });
   }, [room]);
+  useEffect(() => {
+    if (chatElement.current) {
+      chatElement.current.scrollTop = chatElement.current.scrollHeight;
+    }
+  }, [chatElement.current]);
 
   const sendMessage = () => {
-    if (text) client.emit("chat message", { room, text, name });
+    if (text) {
+      client.emit("chat message", { room, text, name });
+      setText("");
+    }
   };
 
   return (
@@ -73,7 +83,7 @@ const Chat = () => {
         <UserList room={room || "room"} />
         {/* <hr className={classes.hr} /> */}
         <div>
-          <div className={classes.chat}>
+          <div ref={chatElement} className={classes.chat}>
             {messages &&
               messages.map((message, index) =>
                 message.name !== name ? (

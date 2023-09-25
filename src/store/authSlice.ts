@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IAuth {
   isAuth: boolean;
@@ -26,7 +26,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuth = true;
     },
-    addRoom(state, action) {
+    addRoom(state, action: PayloadAction<string>) {
       state.user.rooms.push(action.payload);
     },
   },
