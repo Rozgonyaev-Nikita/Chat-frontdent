@@ -83,3 +83,18 @@
     max-height: 750px;
   }
 }
+@media (max-width: 470px) {
+  .wrapper {
+    background-color: #708090;
+    min-height: 100vh;
+    /* min-height: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  .chat {
+    max-height: 750px;
+  }
+}
