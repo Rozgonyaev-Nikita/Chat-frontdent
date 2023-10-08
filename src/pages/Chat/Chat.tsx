@@ -51,7 +51,7 @@ const Chat = () => {
     return () => {
       client.disconnect();
     };
-  }, [client]);
+  }, [client, room]);
 
   useEffect(() => {
     axios
@@ -67,11 +67,14 @@ const Chat = () => {
     if (chatElement.current) {
       chatElement.current.scrollTop = chatElement.current.scrollHeight;
     }
-  }, [chatElement.current]);
+  }, [messages.length]);
 
   const sendMessage = () => {
     if (text) {
       client.emit("chat message", { room, text, name });
+      if (chatElement.current) {
+        chatElement.current.scrollTop = chatElement.current.scrollHeight;
+      }
       setText("");
     }
   };
